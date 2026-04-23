@@ -1,0 +1,12 @@
+{
+  "alert_name": "Mimikatz Credential Dump Attempt",
+  "source": "crowdstrike",
+  "host": "DESKTOP-WIN11-01",
+  "username": "demo.user",
+  "process_name": "mimikatz.exe",
+  "command_line": "mimikatz.exe privilege::debug sekurlsa::logonPasswords",
+  "raw_payload": {
+    "vendor": "crowdstrike",
+    "severity": "critical"
+  }
+}
