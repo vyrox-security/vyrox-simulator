@@ -8,6 +8,8 @@
 
 Vyrox Simulator provides deterministic, redacted alert payload generation for integration testing and demos of the Vyrox ingestion and triage pipeline without touching production tenants. It exists as a separate repository so engineers and design partners can test end-to-end behavior with realistic inputs while keeping the execution-critical open-core proxy auditable and isolated for zero-trust security review.
 
+Website: vyrox.dev (coming soon)
+
 ## Why This Exists
 
 You cannot run realistic SOC integration tests against a real production CrowdStrike tenant every time someone changes a parser or confidence threshold. At best you get inconsistent results. At worst you generate a real incident while trying to test a fake one.
@@ -78,6 +80,8 @@ Contributions are welcome for new simulation scripts, fixture quality, edge-case
 Do not submit raw production customer payloads, unredacted host/user identifiers, or fixtures that cannot be legally shared. Do not add scripts that execute containment actions; this repo simulates alerts only.
 
 See CONTRIBUTING.md for contribution workflow and required review expectations. External contributions are welcome in this repository because it is the safest place to improve coverage quickly.
+
+Security contact: sec.vyrox@proton.me
 
 ## Licence
 
