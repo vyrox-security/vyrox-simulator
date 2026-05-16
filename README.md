@@ -1,6 +1,6 @@
 # Vyrox Simulator
 
-![Licence](https://img.shields.io/badge/licence-proprietary-lightgrey?style=flat-square)
+![Licence](https://img.shields.io/badge/licence-MIT-green?style=flat-square)
 ![Build](https://img.shields.io/badge/build-alpha-6a737d?style=flat-square)
 ![Version](https://img.shields.io/badge/version-v0.1.0--alpha-005cc5?style=flat-square)
 ![Platform](https://img.shields.io/badge/platform-python-3776ab?style=flat-square)
@@ -83,6 +83,6 @@ See CONTRIBUTING.md for contribution workflow and required review expectations. 
 
 Security contact: sec.vyrox@proton.me
 
-## Licence
+## License
 
-This repository is released under Vyrox commercial terms. See LICENCE for details.
+This repository is released under the MIT License. See LICENSE for details.

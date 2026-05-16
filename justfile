@@ -8,7 +8,7 @@
 #   just <command>   # Run specific command
 # =====================================================================
 
-set shell := ["zsh", "-cu"]
+set shell := ["sh", "-cu"]
 
 # =====================================================================
 # DEFAULT
@@ -100,9 +100,7 @@ clean:
 
 # Run CI pipeline
 ci:
-    set -e
-    ruff check scripts/
-    mypy scripts/ --strict
+    ruff check scripts/ && mypy scripts/ --strict
 
 # =====================================================================
 # HELP
