@@ -21,20 +21,20 @@ Keeping this tooling separate also makes demo preparation less fragile. Product 
 ## Architecture
 
 ```text
-[Fixture JSON]
-	| crowdstrike_mimikatz.json
+[Lua Scenario]
+	| mimikatz.lua
 	v
-[simulate_mimikatz.py]
-	| builds HMAC header
-	| maps to CrowdStrike-style event fields
+[scripts/simulate.py]
+	| executes Lua scenario
+	| builds vendor-specific headers
 	v
-[POST /webhook]
+[POST /webhook/<source>]
 	| local ingestion endpoint
 	v
 [202 Accepted]
 ```
 
-Simulated payload coverage currently targets CrowdStrike-style event names and structure. Additional scripts can map equivalent SentinelOne alert types for cross-vendor parser tests.
+Simulated payload coverage includes both CrowdStrike and SentinelOne alerts, defined as dynamic Lua scenarios.
 
 ## Quickstart
 
@@ -51,21 +51,27 @@ Prerequisites:
 python -m pip install -r requirements.txt
 ```
 
-2. Send the Mimikatz simulation fixture.
+2. Run a Lua simulation scenario.
 
 ```bash
-# Post a signed CrowdStrike-style Mimikatz alert to local ingestion
-python scripts/simulate_mimikatz.py \
+# Run the Mimikatz scenario
+python scripts/simulate.py mimikatz \
   --url http://localhost:8001/webhook \
   --secret replace-with-64-hex-characters
 ```
 
-3. Verify the response line indicates acceptance.
+3. Verify the response indicates acceptance.
 
 ```bash
-# Expected output includes: [vyrox-simulator] Alert sent -> HTTP 202
-echo "Check simulator output for HTTP 202"
+# Expected output includes: Response: 202
 ```
+
+## Adding Scenarios
+
+New scenarios should be added to the `scenarios/` directory as `.lua` files. A scenario must return a table containing:
+- `name`: string
+- `source`: "crowdstrike" or "sentinelone"
+- `payload`: table matching the vendor's alert schema
 
 ## Configuration
 
