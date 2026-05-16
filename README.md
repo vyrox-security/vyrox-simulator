@@ -1,3 +1,5 @@
+![Vyrox Simulator Banner](assets/vyrox-simulator-banner.png)
+
 # Vyrox Simulator
 
 ![Licence](https://img.shields.io/badge/licence-MIT-green?style=flat-square)
