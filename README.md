@@ -1,7 +1,4 @@
 ![Vyrox Simulator Banner](assets/vyrox-simulator-banner.png)
-
-# Vyrox Simulator
-
 ![Licence](https://img.shields.io/badge/licence-MIT-green?style=flat-square)
 ![Build](https://img.shields.io/badge/build-alpha-6a737d?style=flat-square)
 ![Version](https://img.shields.io/badge/version-v0.1.0-005cc5?style=flat-square)
