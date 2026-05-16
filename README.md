@@ -1,6 +1,6 @@
 # Vyrox Simulator
 
-![Licence](https://img.shields.io/badge/licence-proprietary-lightgrey?style=flat-square)
+![Licence](https://img.shields.io/badge/licence-MIT-green?style=flat-square)
 ![Build](https://img.shields.io/badge/build-alpha-6a737d?style=flat-square)
 ![Version](https://img.shields.io/badge/version-v0.1.0--alpha-005cc5?style=flat-square)
 ![Platform](https://img.shields.io/badge/platform-python-3776ab?style=flat-square)
@@ -14,7 +14,7 @@ Website: vyrox.dev (coming soon)
 
 You cannot run realistic SOC integration tests against a real production CrowdStrike tenant every time someone changes a parser or confidence threshold. At best you get inconsistent results. At worst you generate a real incident while trying to test a fake one.
 
-The simulator solves that by producing stable payloads that match real-world alert structure closely enough to exercise normalization, heuristic pattern matching, queueing, and Slack routing. It is boring by design, which is ideal for regression testing.
+The simulator solves that by producing stable payloads that match real-world alert structure closely enough to exercise normalization, heuristic pattern matching, queueing, and Discord routing. It is boring by design, which is ideal for regression testing.
 
 Keeping this tooling separate also makes demo preparation less fragile. Product walkthroughs should depend on deterministic fixtures, not live threat telemetry and luck.
 
@@ -83,6 +83,6 @@ See CONTRIBUTING.md for contribution workflow and required review expectations. 
 
 Security contact: sec.vyrox@proton.me
 
-## Licence
+## License
 
-This repository is released under Vyrox commercial terms. See LICENCE for details.
+This repository is released under the MIT License. See LICENSE for details.
