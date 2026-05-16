@@ -2,7 +2,7 @@
 
 ![Licence](https://img.shields.io/badge/licence-MIT-green?style=flat-square)
 ![Build](https://img.shields.io/badge/build-alpha-6a737d?style=flat-square)
-![Version](https://img.shields.io/badge/version-v0.1.0--alpha-005cc5?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.0-005cc5?style=flat-square)
 ![Platform](https://img.shields.io/badge/platform-python-3776ab?style=flat-square)
 ![Funny](https://img.shields.io/badge/paging%20at%202am-simulate%20instead-6a737d?style=flat-square)
 
