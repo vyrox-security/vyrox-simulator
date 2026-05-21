@@ -1,7 +1,7 @@
 # Vyrox Simulator Justfile
 # =====================================================================
 # Production-grade task runner for alert simulation scripts.
-# MIT licensed - test scenarios for integration testing.
+# MIT licensed - pure shell, no Python/Lua dependencies.
 #
 # Usage:
 #   just              # Show all commands
@@ -10,101 +10,60 @@
 
 set shell := ["sh", "-cu"]
 
-# =====================================================================
-# DEFAULT
-# =====================================================================
+VYROX_URL ?= "http://localhost:8001/webhook"
+VYROX_HMAC_SECRET ?= "replace-with-64-hex-characters"
+VYROX_TENANT_ID ?= "default-tenant"
 
 default:
     @just --list
 
-# =====================================================================
-# INSTALLATION
-# =====================================================================
-
-# Install dependencies
-install:
-    pip install -r requirements.txt
-
-# =====================================================================
-# SIMULATION SCENARIOS
-# =====================================================================
-
-# Simulate mimikatz attack
-sim-mimikatz:
-    python scripts/simulate_crowdstrike_alert.py --scenario mimikatz
-
-# Simulate lateral movement
-sim-lateral:
-    python scripts/simulate_crowdstrike_alert.py --scenario lateral
-
-# Simulate benign alert
-sim-benign:
-    python scripts/simulate_crowdstrike_alert.py --scenario benign
-
-# Simulate credential dumping
-sim-credentials:
-    python scripts/simulate_crowdstrike_alert.py --scenario credentials
-
-# Simulate PowerShell abuse
-sim-powershell:
-    python scripts/simulate_crowdstrike_alert.py --scenario powershell
-
-# Run all scenarios
-sim-all:
-    @echo "Running all scenarios..."
-    python scripts/simulate_crowdstrike_alert.py --scenario mimikatz
-    python scripts/simulate_crowdstrike_alert.py --scenario lateral
-    python scripts/simulate_crowdstrike_alert.py --scenario benign
-
-# Custom scenario
-sim scenario:
-    python scripts/simulate_crowdstrike_alert.py --scenario {{ scenario }}
-
-# =====================================================================
-# LIST SCENARIOS
-# =====================================================================
-
-# List available scenarios
-scenarios:
-    python scripts/simulate_crowdstrike_alert.py --help
-
-# =====================================================================
-# LINTING
-# =====================================================================
-
-# Lint scripts
 lint:
-    ruff check scripts/
+    @echo "Linting (shell script check)..."
+    @sh -n simulate.sh
+    @for f in scenarios/*.sh; do sh -n "$$f"; done
+    @echo "All shell scripts syntax OK"
 
-# Lint and fix
-lint-fix:
-    ruff check scripts/ --fix
+scenarios:
+    @./simulate.sh --help
 
-# Type check
-typecheck:
-    mypy scripts/ --strict
+sim scenario:
+    @VYROX_URL="{{VYROX_URL}}" VYROX_HMAC_SECRET="{{VYROX_HMAC_SECRET}}" VYROX_TENANT_ID="{{VYROX_TENANT_ID}}" ./simulate.sh {{scenario}}
 
-# =====================================================================
-# CLEANUP
-# =====================================================================
+sim-dry scenario:
+    @VYROX_URL="{{VYROX_URL}}" VYROX_HMAC_SECRET="{{VYROX_HMAC_SECRET}}" VYROX_TENANT_ID="{{VYROX_TENANT_ID}}" ./simulate.sh {{scenario}} --dry-run
 
-# Clean caches
+sim-mimikatz:
+    @VYROX_URL="{{VYROX_URL}}" VYROX_HMAC_SECRET="{{VYROX_HMAC_SECRET}}" VYROX_TENANT_ID="{{VYROX_TENANT_ID}}" ./simulate.sh mimikatz
+
+sim-lateral:
+    @VYROX_URL="{{VYROX_URL}}" VYROX_HMAC_SECRET="{{VYROX_HMAC_SECRET}}" VYROX_TENANT_ID="{{VYROX_TENANT_ID}}" ./simulate.sh lateral --all-stages
+
+sim-ransomware:
+    @VYROX_URL="{{VYROX_URL}}" VYROX_HMAC_SECRET="{{VYROX_HMAC_SECRET}}" VYROX_TENANT_ID="{{VYROX_TENANT_ID}}" ./simulate.sh ransomware
+
+sim-sentinelone:
+    @VYROX_URL="{{VYROX_URL}}" VYROX_HMAC_SECRET="{{VYROX_HMAC_SECRET}}" VYROX_TENANT_ID="{{VYROX_TENANT_ID}}" ./simulate.sh sentinelone_lateral
+
+sim-benign:
+    @VYROX_URL="{{VYROX_URL}}" VYROX_HMAC_SECRET="{{VYROX_HMAC_SECRET}}" VYROX_TENANT_ID="{{VYROX_TENANT_ID}}" ./simulate.sh benign
+
+sim-stage scenario stage:
+    @VYROX_URL="{{VYROX_URL}}" VYROX_HMAC_SECRET="{{VYROX_HMAC_SECRET}}" VYROX_TENANT_ID="{{VYROX_TENANT_ID}}" ./simulate.sh {{scenario}} --stage {{stage}}
+
+sim-all:
+    @echo "Running all single-stage scenarios..."
+    @VYROX_URL="{{VYROX_URL}}" VYROX_HMAC_SECRET="{{VYROX_HMAC_SECRET}}" VYROX_TENANT_ID="{{VYROX_TENANT_ID}}" ./simulate.sh mimikatz
+    @VYROX_URL="{{VYROX_URL}}" VYROX_HMAC_SECRET="{{VYROX_HMAC_SECRET}}" VYROX_TENANT_ID="{{VYROX_TENANT_ID}}" ./simulate.sh ransomware
+    @VYROX_URL="{{VYROX_URL}}" VYROX_HMAC_SECRET="{{VYROX_HMAC_SECRET}}" VYROX_TENANT_ID="{{VYROX_TENANT_ID}}" ./simulate.sh sentinelone_lateral
+    @VYROX_URL="{{VYROX_URL}}" VYROX_HMAC_SECRET="{{VYROX_HMAC_SECRET}}" VYROX_TENANT_ID="{{VYROX_TENANT_ID}}" ./simulate.sh benign
+    @VYROX_URL="{{VYROX_URL}}" VYROX_HMAC_SECRET="{{VYROX_HMAC_SECRET}}" VYROX_TENANT_ID="{{VYROX_TENANT_ID}}" ./simulate.sh powershell_encoded
+
 clean:
-    rm -rf .pytest_cache
-    rm -rf .ruff_cache
-    find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
+    rm -rf __pycache__ .ruff_cache .pytest_cache .venv
+    find . -name "__pycache__" -type d -exec rm -rf {} + 2>/dev/null || true
 
-# =====================================================================
-# CI/CD
-# =====================================================================
-
-# Run CI pipeline
-ci:
-    ruff check scripts/ && mypy scripts/ --strict
-
-# =====================================================================
-# HELP
-# =====================================================================
+ci: lint scenarios sim-mimikatz
+    @echo "CI passed"
 
 help:
     @just --list --unsorted
