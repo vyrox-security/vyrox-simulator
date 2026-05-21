@@ -59,8 +59,9 @@ sim-all:
     @VYROX_URL="{{VYROX_URL}}" VYROX_HMAC_SECRET="{{VYROX_HMAC_SECRET}}" VYROX_TENANT_ID="{{VYROX_TENANT_ID}}" ./simulate.sh powershell_encoded
 
 clean:
-    rm -rf __pycache__ .ruff_cache .pytest_cache .venv
-    find . -name "__pycache__" -type d -exec rm -rf {} + 2>/dev/null || true
+    # Remove transient files. The simulator is pure shell; there is no
+    # Python build artefact tree to sweep. Local logs / backup files only.
+    rm -f *.log *.tmp *.bak
 
 ci: lint scenarios sim-mimikatz
     @echo "CI passed"

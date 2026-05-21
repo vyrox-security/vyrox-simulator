@@ -1,24 +1,16 @@
-# Python
-__pycache__/
-*.py[cod]
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
+# Vyrox Simulator — pure shell. No Python toolchain involved.
+# Only ignore transient files and local-dev artefacts.
 
-# Virtual environments
-.venv/
-venv/
-env/
-
-# Generated or local files
+# Generated / runtime files
 *.log
 *.tmp
 *.bak
 
-# Dev config
-.claude/
-
-# VS Code and OS
+# Editor / IDE / OS noise
 .vscode/
+.idea/
 .DS_Store
 Thumbs.db
+
+# Dev assistant config (per-user, never committed)
+.claude/
