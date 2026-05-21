@@ -19,7 +19,8 @@ Describe what changed and why in one to three sentences.
 3. Confirm expected behavior.
 
 ```bash
-python scripts/simulate_mimikatz.py --help
+./simulate.sh --help
+./simulate.sh mimikatz --dry-run
 ```
 
 ## Security checklist

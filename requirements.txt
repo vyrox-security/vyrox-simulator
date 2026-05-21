@@ -1,3 +1,0 @@
-# Vyrox Simulator - Pure Shell Edition
-# No Python dependencies required.
-# Requires: bash, openssl, curl, jq (optional, for pretty-printing)
