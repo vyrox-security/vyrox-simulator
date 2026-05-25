@@ -51,6 +51,6 @@ No bounty program is active during alpha.
 ## Known Limitations
 
 - Simulated payloads are representative, not full vendor parity.
-- Free-tier constraints can affect large-batch demo runs.
+- Infrastructure capacity constraints can affect large-batch demo runs.
 
 These are operational constraints, not vulnerabilities.
