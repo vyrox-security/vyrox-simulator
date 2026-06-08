@@ -14,3 +14,14 @@ Thumbs.db
 
 # Dev assistant config (per-user, never committed)
 .claude/
+# Local tooling and editor config (not committed)
+CLAUDE.md
+.claude/
+AGENTS.md
+GEMINI.md
+.cursor/
+.cursorrules
+.aider*
+.gstack/
+.mcp.json
+.claude.json
