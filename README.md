@@ -3,11 +3,10 @@
 ![Build](https://img.shields.io/badge/build-alpha-6a737d?style=flat-square)
 ![Version](https://img.shields.io/badge/version-v0.2.0-005cc5?style=flat-square)
 ![Platform](https://img.shields.io/badge/platform-bash-4eaa25?style=flat-square)
-![Funny](https://img.shields.io/badge/paging%20at%202am-simulate%20instead-6a737d?style=flat-square)
 
 Vyrox Simulator provides deterministic, redacted alert payload generation for integration testing and demos of the Vyrox ingestion and triage pipeline without touching production tenants. Pure shell scripts -- no Python, no Lua, no dependencies beyond `bash`, `openssl`, and `curl`.
 
-Website: vyrox.dev (coming soon)
+Website: [vyrox.dev](https://vyrox.dev). General enquiries: hello@vyrox.dev
 
 ## Why This Exists
 
