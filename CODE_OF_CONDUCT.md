@@ -21,4 +21,4 @@ This project is used to test security tooling behavior. Keep interactions techni
 
 Maintainers may edit, lock, remove, or restrict participation that harms project quality or safety.
 
-Security concerns: security@vyrox.security
+Security concerns: security@vyrox.dev
