@@ -133,7 +133,7 @@ Do not submit raw production customer payloads, unredacted host/user identifiers
 
 See CONTRIBUTING.md for contribution workflow and required review expectations.
 
-Security contact: sec.vyrox@proton.me
+Security contact: security@vyrox.dev
 
 ## License
 
