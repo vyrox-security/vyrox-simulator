@@ -1,4 +1,4 @@
-# Vyrox Simulator — pure shell. No Python toolchain involved.
+# Vyrox Simulator - pure shell. No Python toolchain involved.
 # Only ignore transient files and local-dev artefacts.
 
 # Generated / runtime files

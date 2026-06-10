@@ -2,7 +2,7 @@
 # =============================================================================
 # Scenario: Mimikatz Credential Dumping
 # =============================================================================
-# MITRE ATT&CK: T1003.001 — OS Credential Dumping: LSASS Memory
+# MITRE ATT&CK: T1003.001 - OS Credential Dumping: LSASS Memory
 # Tactic:     Credential Access
 # Severity:   CRITICAL
 #
@@ -30,14 +30,14 @@ SCENARIO_TECHNIQUE="T1003"
 TIMESTAMP=$(date +%s)
 DETECT_ID="cs-${TIMESTAMP}"
 
-# build_payload — Generate the CrowdStrike-format alert payload.
+# build_payload - Generate the CrowdStrike-format alert payload.
 #
 # This function produces a JSON payload that mimics what CrowdStrike Falcon
 # would send for a mimikatz detection. The structure matches the real
 # webhook schema: sensor.hostname, process.user_name/file_name/command_line/sha256.
 #
 # Args:
-#   $1: tenant_id — Multi-tenant isolation key (default: "default-tenant")
+#   $1: tenant_id - Multi-tenant isolation key (default: "default-tenant")
 #
 # Output:
 #   JSON payload to stdout
