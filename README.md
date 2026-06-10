@@ -12,7 +12,7 @@ Website: [vyrox.dev](https://vyrox.dev). General enquiries: hello@vyrox.dev
 
 You cannot run realistic SOC integration tests against a real production CrowdStrike tenant every time someone changes a parser or confidence threshold. At best you get inconsistent results. At worst you generate a real incident while trying to test a fake one.
 
-The simulator solves that by producing stable payloads that match real-world alert structure closely enough to exercise normalization, heuristic pattern matching, queueing, and Discord routing. It is boring by design, which is ideal for regression testing.
+The simulator solves that by producing stable payloads that match real-world alert structure closely enough to exercise normalization, heuristic pattern matching, queueing, and surfacing to the operational console. It is boring by design, which is ideal for regression testing.
 
 ## Architecture
 
