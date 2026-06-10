@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Scenario: Lateral Movement to Exfiltration — Stage 6: Discovery
-# MITRE ATT&CK: T1083 — File and Directory Discovery | Severity: MEDIUM
+# Scenario: Lateral Movement to Exfiltration - Stage 6: Discovery
+# MITRE ATT&CK: T1083 - File and Directory Discovery | Severity: MEDIUM
 SCENARIO_NAME="lateral_to_exfil"
 SCENARIO_STAGE=6
 SCENARIO_STAGE_NAME="Discovery"

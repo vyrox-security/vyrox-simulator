@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Scenario: Lateral Movement to Exfiltration — Stage 8: Exfiltration
-# MITRE ATT&CK: T1041 — Exfiltration Over C2 Channel | Severity: CRITICAL
+# Scenario: Lateral Movement to Exfiltration - Stage 8: Exfiltration
+# MITRE ATT&CK: T1041 - Exfiltration Over C2 Channel | Severity: CRITICAL
 SCENARIO_NAME="lateral_to_exfil"
 SCENARIO_STAGE=8
 SCENARIO_STAGE_NAME="Exfiltration"

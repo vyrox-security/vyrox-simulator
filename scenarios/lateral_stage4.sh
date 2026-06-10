@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Scenario: Lateral Movement to Exfiltration — Stage 4: Privilege Escalation
-# MITRE ATT&CK: T1548 — Abuse Elevation Control Mechanism | Severity: CRITICAL
+# Scenario: Lateral Movement to Exfiltration - Stage 4: Privilege Escalation
+# MITRE ATT&CK: T1548 - Abuse Elevation Control Mechanism | Severity: CRITICAL
 SCENARIO_NAME="lateral_to_exfil"
 SCENARIO_STAGE=4
 SCENARIO_STAGE_NAME="Privilege Escalation"

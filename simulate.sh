@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # =============================================================================
-# Vyrox Attack Simulator — Pure Shell Script Edition
+# Vyrox Attack Simulator - Pure Shell Script Edition
 # =============================================================================
 #
 # Generates deterministic EDR alert payloads and sends them to the Vyrox
-# ingestion service for integration testing. Zero Python/Lua dependencies —
+# ingestion service for integration testing. Zero Python/Lua dependencies -
 # just bash, openssl (for HMAC), and curl (for HTTP).
 #
 # Why shell scripts?
@@ -23,7 +23,7 @@
 # Security note:
 #   The default HMAC secret is a placeholder. For real testing, set
 #   VYROX_HMAC_SECRET to match your ingestion service's config.
-#   The default secret is "replace-with-64-hex-characters" — if your
+#   The default secret is "replace-with-64-hex-characters" - if your
 #   ingestion service uses the same default, this will work out of the box.
 #
 # Usage:
@@ -53,7 +53,7 @@ VYROX_URL="${VYROX_URL:-http://localhost:8001/webhook}"
 VYROX_HMAC_SECRET="${VYROX_HMAC_SECRET:-replace-with-64-hex-characters}"
 VYROX_TENANT_ID="${VYROX_TENANT_ID:-default-tenant}"
 
-# Color output helpers — because even test tools deserve good UX.
+# Color output helpers - because even test tools deserve good UX.
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -66,7 +66,7 @@ warn()    { echo -e "${YELLOW}[WARN]${NC} $*"; }
 error()   { echo -e "${RED}[ERROR]${NC} $*" >&2; }
 
 # ---------------------------------------------------------------------------
-# scenarios_list — Print available scenarios and usage examples
+# scenarios_list - Print available scenarios and usage examples
 # ---------------------------------------------------------------------------
 # Called when the user passes --help or provides an invalid scenario name.
 # Lists all available scenarios with their severity levels and common options.
@@ -98,10 +98,10 @@ scenarios_list() {
 }
 
 # ---------------------------------------------------------------------------
-# build_signature — Generate HMAC-SHA256 signature for a payload
+# build_signature - Generate HMAC-SHA256 signature for a payload
 # ---------------------------------------------------------------------------
 # Uses openssl to compute HMAC-SHA256 of the payload with the shared secret.
-# The output is the raw hex digest (no "sha256=" prefix — that's added by
+# The output is the raw hex digest (no "sha256=" prefix - that's added by
 # the caller when setting the X-Vyrox-Signature header).
 #
 # Args:
@@ -117,7 +117,7 @@ build_signature() {
 }
 
 # ---------------------------------------------------------------------------
-# send_alert — POST a signed payload to the ingestion webhook
+# send_alert - POST a signed payload to the ingestion webhook
 # ---------------------------------------------------------------------------
 # Sends the JSON payload to the appropriate webhook endpoint (/webhook/crowdstrike
 # or /webhook/sentinelone) with HMAC-SHA256 signature in the X-Vyrox-Signature
@@ -165,7 +165,7 @@ send_alert() {
 }
 
 # ---------------------------------------------------------------------------
-# run_scenario — Source a scenario script and send its payload
+# run_scenario - Source a scenario script and send its payload
 # ---------------------------------------------------------------------------
 # Sources the scenario .sh file (which defines build_payload and metadata
 # variables), calls build_payload(tenant_id) to get the JSON, and sends it
@@ -210,7 +210,7 @@ run_scenario() {
 }
 
 # ---------------------------------------------------------------------------
-# run_multi_stage — Execute a multi-stage attack scenario
+# run_multi_stage - Execute a multi-stage attack scenario
 # ---------------------------------------------------------------------------
 # Handles the "lateral" scenario which has 8 stages (initial access through
 # exfiltration). Each stage is a separate .sh file (lateral_stage1.sh through
@@ -262,7 +262,7 @@ run_multi_stage() {
 }
 
 # ---------------------------------------------------------------------------
-# run_single_stage — Execute a single stage of a multi-stage scenario
+# run_single_stage - Execute a single stage of a multi-stage scenario
 # ---------------------------------------------------------------------------
 # Sources the specific stage script, builds the payload, and sends it.
 # Called by run_multi_stage for each stage. Can also be called directly
@@ -307,7 +307,7 @@ run_single_stage() {
 }
 
 # ---------------------------------------------------------------------------
-# main — Parse arguments and dispatch to the appropriate runner
+# main - Parse arguments and dispatch to the appropriate runner
 # ---------------------------------------------------------------------------
 # Entry point. Parses command-line arguments (--url, --secret, --tenant,
 # --stage, --all-stages, --dry-run, --help) and dispatches to run_scenario
