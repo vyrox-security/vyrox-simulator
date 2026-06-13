@@ -10,9 +10,12 @@
 
 set shell := ["sh", "-cu"]
 
-VYROX_URL ?= "http://localhost:8001/webhook"
-VYROX_HMAC_SECRET ?= "replace-with-64-hex-characters"
-VYROX_TENANT_ID ?= "default-tenant"
+# `just` has no Make-style `?=`. Use env_var_or_default so each value falls back
+# to the literal but is overridden by the matching environment variable when set
+# (the root justfile's demo/sim recipes pass these through).
+VYROX_URL := env_var_or_default("VYROX_URL", "http://localhost:8001/webhook")
+VYROX_HMAC_SECRET := env_var_or_default("VYROX_HMAC_SECRET", "replace-with-64-hex-characters")
+VYROX_TENANT_ID := env_var_or_default("VYROX_TENANT_ID", "default-tenant")
 
 default:
     @just --list
