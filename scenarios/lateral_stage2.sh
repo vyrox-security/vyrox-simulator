@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # =============================================================================
-# Scenario: Lateral Movement to Exfiltration — Stage 2: Execution
+# Scenario: Lateral Movement to Exfiltration - Stage 2: Execution
 # =============================================================================
-# MITRE ATT&CK: T1059 — Command and Scripting Interpreter
+# MITRE ATT&CK: T1059 - Command and Scripting Interpreter
 # Tactic:     Execution
 # Severity:   CRITICAL
 #
 # What this simulates:
-#   The downloaded payload executes — a malicious binary running with
+#   The downloaded payload executes - a malicious binary running with
 #   hidden flags and encoded arguments. This is where the attacker
 #   establishes a foothold on the compromised workstation.
 # =============================================================================
@@ -23,7 +23,7 @@ SCENARIO_TECHNIQUE="T1059"
 TIMESTAMP=$(date +%s)
 DETECT_ID="cs-stage2-${TIMESTAMP}"
 
-# build_payload — Stage 2: Execution payload
+# build_payload - Stage 2: Execution payload
 # Args: $1: tenant_id (default: "default-tenant")
 build_payload() {
     local tenant_id="${1:-default-tenant}"

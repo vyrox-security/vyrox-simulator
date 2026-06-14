@@ -2,7 +2,7 @@
 # =============================================================================
 # Scenario: SentinelOne Lateral Movement (PsExec)
 # =============================================================================
-# MITRE ATT&CK: T1021 — Remote Services
+# MITRE ATT&CK: T1021 - Remote Services
 # Tactic:     Lateral Movement
 # Severity:   HIGH
 #
@@ -12,7 +12,7 @@
 #   abused by attackers for remote command execution.
 #
 # Detection signals:
-#   - Process name: psexec.exe (LOLBin — legitimate tool, suspicious use)
+#   - Process name: psexec.exe (LOLBin - legitimate tool, suspicious use)
 #   - Command line: contains credentials in plaintext (-u, -p flags)
 #   - MITRE technique: T1021 (Remote Services)
 #
@@ -29,7 +29,7 @@ SCENARIO_TECHNIQUE="T1021"
 TIMESTAMP=$(date +%s)
 ALERT_ID="s1-${TIMESTAMP}"
 
-# build_payload — Generate the SentinelOne-format lateral movement payload.
+# build_payload - Generate the SentinelOne-format lateral movement payload.
 # Uses SentinelOne's schema: agentRealtimeInfo, processName, commandLine,
 # fileFullName, fileContentHash, mitreTactic, mitreTechnique.
 # Args: $1: tenant_id (default: "default-tenant")

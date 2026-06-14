@@ -355,4 +355,10 @@ main() {
     fi
 }
 
-main "$@"
+# Only dispatch when executed directly. When the script is SOURCED (the CI
+# smoke test sources it to exercise build_signature / build_payload without a
+# live ingestion server), the functions are defined but main does not fire, so
+# sourcing has no side effects and sends nothing.
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    main "$@"
+fi

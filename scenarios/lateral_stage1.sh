@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # =============================================================================
-# Scenario: Lateral Movement to Exfiltration — Stage 1: Initial Access
+# Scenario: Lateral Movement to Exfiltration - Stage 1: Initial Access
 # =============================================================================
-# MITRE ATT&CK: T1566 — Phishing
+# MITRE ATT&CK: T1566 - Phishing
 # Tactic:     Initial Access
 # Severity:   HIGH
 #
@@ -13,7 +13,7 @@
 #
 # Detection signals:
 #   - Command line: powershell -nop -w hidden -c "IEX(...DownloadString...)"
-#   - This is a classic download cradle — highly suspicious
+#   - This is a classic download cradle - highly suspicious
 #
 # Part of: lateral attack chain (stages 1-8)
 # =============================================================================
@@ -29,7 +29,7 @@ SCENARIO_TECHNIQUE="T1566"
 TIMESTAMP=$(date +%s)
 DETECT_ID="cs-stage1-${TIMESTAMP}"
 
-# build_payload — Generate the CrowdStrike-format alert payload for stage 1.
+# build_payload - Generate the CrowdStrike-format alert payload for stage 1.
 # Args: $1: tenant_id (default: "default-tenant")
 # Output: JSON payload to stdout
 build_payload() {

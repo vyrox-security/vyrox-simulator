@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # =============================================================================
-# Scenario: Benign Activity — Scheduled Backup Job
+# Scenario: Benign Activity - Scheduled Backup Job
 # =============================================================================
-# MITRE ATT&CK: T1059 — Command and Scripting Interpreter
+# MITRE ATT&CK: T1059 - Command and Scripting Interpreter
 # Tactic:     Execution
 # Severity:   LOW
 #
 # What this simulates:
 #   A legitimate scheduled backup job using robocopy to copy user data
 #   to a network share. This SHOULD be classified as BENIGN by the triage
-#   pipeline — it's a false positive that tests whether Vyrox can
+#   pipeline - it's a false positive that tests whether Vyrox can
 #   distinguish between malicious and benign activity.
 #
 # Detection signals:
@@ -31,7 +31,7 @@ SCENARIO_TECHNIQUE="T1059"
 TIMESTAMP=$(date +%s)
 DETECT_ID="cs-${TIMESTAMP}"
 
-# build_payload — Generate the CrowdStrike-format benign activity payload.
+# build_payload - Generate the CrowdStrike-format benign activity payload.
 # Args: $1: tenant_id (default: "default-tenant")
 build_payload() {
     local tenant_id="${1:-default-tenant}"

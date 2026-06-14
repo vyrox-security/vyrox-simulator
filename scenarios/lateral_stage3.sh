@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # =============================================================================
-# Scenario: Lateral Movement to Exfiltration — Stage 3: Persistence
+# Scenario: Lateral Movement to Exfiltration - Stage 3: Persistence
 # =============================================================================
-# MITRE ATT&CK: T1053 — Scheduled Task/Job
+# MITRE ATT&CK: T1053 - Scheduled Task/Job
 # Tactic:     Persistence
 # Severity:   HIGH
 #

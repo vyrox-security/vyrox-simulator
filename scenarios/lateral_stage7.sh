@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Scenario: Lateral Movement to Exfiltration — Stage 7: Collection
-# MITRE ATT&CK: T1560 — Archive Collected Data | Severity: HIGH
+# Scenario: Lateral Movement to Exfiltration - Stage 7: Collection
+# MITRE ATT&CK: T1560 - Archive Collected Data | Severity: HIGH
 SCENARIO_NAME="lateral_to_exfil"
 SCENARIO_STAGE=7
 SCENARIO_STAGE_NAME="Collection"

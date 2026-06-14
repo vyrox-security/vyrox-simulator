@@ -2,13 +2,13 @@
 # =============================================================================
 # Scenario: Ransomware File Encryption
 # =============================================================================
-# MITRE ATT&CK: T1486 — Data Encrypted for Impact
+# MITRE ATT&CK: T1486 - Data Encrypted for Impact
 # Tactic:     Impact
 # Severity:   CRITICAL
 #
 # What this simulates:
 #   A ransomware encryptor targeting specific file types (.docx, .xlsx, .pdf,
-#   .pst) with a ransom note. This is the "impact" stage of an attack — the
+#   .pst) with a ransom note. This is the "impact" stage of an attack - the
 #   attacker has already gained access, moved laterally, and is now causing
 #   damage.
 #
@@ -30,7 +30,7 @@ SCENARIO_TECHNIQUE="T1486"
 TIMESTAMP=$(date +%s)
 DETECT_ID="cs-${TIMESTAMP}"
 
-# build_payload — Generate the CrowdStrike-format ransomware alert payload.
+# build_payload - Generate the CrowdStrike-format ransomware alert payload.
 # Args: $1: tenant_id (default: "default-tenant")
 build_payload() {
     local tenant_id="${1:-default-tenant}"

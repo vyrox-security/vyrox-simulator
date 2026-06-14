@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Scenario: Lateral Movement to Exfiltration — Stage 5: Lateral Movement
-# MITRE ATT&CK: T1021 — Remote Services | Severity: HIGH
+# Scenario: Lateral Movement to Exfiltration - Stage 5: Lateral Movement
+# MITRE ATT&CK: T1021 - Remote Services | Severity: HIGH
 SCENARIO_NAME="lateral_to_exfil"
 SCENARIO_STAGE=5
 SCENARIO_STAGE_NAME="Lateral Movement"
