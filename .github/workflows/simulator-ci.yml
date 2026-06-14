@@ -1,0 +1,53 @@
+name: Simulator CI
+
+# Gates the public-facing simulator. simulate.sh is the script external users
+# run against their own ingestion deployment, so a syntax error or a broken
+# signer would land in their hands; CI catches both before merge. The smoke
+# test is hermetic (no ingestion server): it builds a real scenario payload,
+# signs it, and asserts the signed-request shape the webhook expects. Every
+# action is pinned to a full commit SHA, not a tag, so a compromised or
+# retagged action cannot inject code into CI.
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  shellcheck-and-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Syntax check (sh -n)
+        # Catches a broken simulate.sh before any external user runs it. Also
+        # checks the scenario scripts and the smoke test itself.
+        run: |
+          sh -n simulate.sh
+          for s in scenarios/*.sh; do sh -n "$s"; done
+          sh -n scripts/smoke.sh
+
+      - name: ShellCheck
+        # Static analysis of the shell scripts. Uses the shellcheck binary
+        # preinstalled on the ubuntu-latest runner rather than a third-party
+        # action, so there is no extra action SHA to pin and trust.
+        # Scoped to error severity: the scenario scripts set metadata vars
+        # (SCENARIO_NAME, etc.) that are consumed only after simulate.sh sources
+        # them, so shellcheck's per-file analysis flags them as unused/unassigned
+        # (SC2034 / SC2153) - false positives across the source boundary. Real
+        # errors still fail the build; sh -n above already covers syntax.
+        run: |
+          shellcheck --version
+          shellcheck --severity=error -x simulate.sh scripts/smoke.sh
+          shellcheck --severity=error scenarios/*.sh
+
+      - name: Signature-shape smoke test
+        # Hermetic: sources simulate.sh (the BASH_SOURCE guard means main does
+        # not fire on source), builds a scenario payload, signs it, and asserts
+        # a 64-hex HMAC-SHA256 digest under a "sha256=" header. No server.
+        run: bash scripts/smoke.sh

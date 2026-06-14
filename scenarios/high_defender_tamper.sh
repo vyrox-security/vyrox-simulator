@@ -39,7 +39,7 @@ build_payload() {
     "process": {
         "user_name": "CORP\\\\attacker",
         "file_name": "powershell.exe",
-        "command_line": "powershell Set-MpPreference -DisableRealtimeMonitoring $true",
+        "command_line": "powershell Set-MpPreference -DisableRealtimeMonitoring \$true",
         "sha256": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
     },
     "tactic": "${SCENARIO_TACTIC}",

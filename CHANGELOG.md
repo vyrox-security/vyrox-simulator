@@ -5,6 +5,35 @@ All notable changes to the Vyrox attack simulator are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-06-14
+
+The demo-fire scenario suite plus CI for the public-facing simulator.
+
+### Added
+- **`demo-fire.sh`** — fire alerts by SEVERITY (random pick from a pool) or by
+  exact scenario name; `--both` (both demo tenants), `--all` (every scenario in
+  a band), `--populate` (full LOW -> MEDIUM -> HIGH -> CRITICAL spread). Five
+  scenarios per band, command lines chosen so Vyrox's own triage lands each
+  alert in its band.
+- **`scripts/smoke.sh`** — hermetic signature-shape smoke test (no ingestion
+  server): builds a real scenario payload, signs it, and asserts the
+  `sha256=<64-hex>` HMAC-SHA256 wire shape the webhook expects.
+- **CI** (`.github/workflows/simulator-ci.yml`) — `sh -n` syntax check,
+  ShellCheck (error severity), and the smoke test on every push/PR. Actions are
+  pinned to a full commit SHA and the job runs with `contents: read` only.
+
+### Changed
+- **`simulate.sh` only dispatches when executed directly** (a `BASH_SOURCE`
+  guard), so the smoke test can source it to exercise the signer and payload
+  builder without sending anything.
+
+### Fixed
+- **`high_defender_tamper.sh` crashed `demo-fire.sh --populate`** with "line 31:
+  true: unbound variable": the PowerShell literal `$true` sat inside an unquoted
+  heredoc, so `set -u` treated it as an unset shell variable. Escaped to `\$true`
+  so the payload carries the literal `$true`. All scenarios now build clean under
+  `set -u`.
+
 ## [0.1.0] - 2026-05-25
 
 First tagged release of the attack simulator, fire realistic, signed EDR
